@@ -17,7 +17,6 @@ func _on_Detection_Radius_body_entered(body):
 	if(body.name == "Player"):
 		player = body
 
-
 func on_hit(amount):
 	health -= amount
 	print('hit')
@@ -26,4 +25,4 @@ func on_hit(amount):
 
 func _on_HitArea_body_entered(body):
 	if(body.name == "Player"):
-		player.on_hit(damage)
+		body.on_hit(damage)
