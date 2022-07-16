@@ -12,18 +12,19 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
+#func _process(delta):dd
 #	pass
 func get_spawn_location():
-	var rand_x = rand_range(-500,500)
-	var rand_y = rand_range(-500,500)
+	var rand_x = rand_range(-1000,1000)
+	var rand_y = rand_range(-1000,1000)
 	var player_pos = get_node("../Player").global_position
 	var pos = Vector2(
 		player_pos.x + rand_x,
 		player_pos.y + rand_y
 	)
-#	if abs(pos - player_pos) < 300:
-#		pos = get_spawn_location()
+	var difference = pos - player_pos
+	if abs(difference.x + difference.y) < 1000:
+		pos = get_spawn_location()
 	return pos
 func spawn_enemy():
 	var Enemy = enemies[0].instance()
@@ -31,9 +32,10 @@ func spawn_enemy():
 
 	var location = get_spawn_location()
 	Enemy.global_position = location
+	Enemy.player = get_node("../Player")
 #	BULLET.rotation_degrees = rotation_degrees
 #	BULLET.apply_impulse(Vector2(), -Vector2(400, 0).rotated(rotation))
-	get_node("/root/World").add_child(Enemy)
+	get_node("/root/World/Enemies").add_child(Enemy)
 	
 func _on_Timer_timeout():
 	spawn_enemy()
