@@ -42,10 +42,10 @@ func _process(delta):
 		var BULLET = projectile.instance()
 		var pos = get_global_mouse_position() - global_position
 		var angle = atan2(pos.y, pos.x)
-		var position = Vector2(200 * cos(angle), 200 * sin(angle))
+		var position = Vector2(150 * cos(angle), 150 * sin(angle))
 		BULLET.global_position = global_position + position
 		BULLET.rotation_degrees = angle
-		BULLET.apply_impulse(Vector2(), Vector2(400, 0).rotated(angle))
+		BULLET.apply_impulse(Vector2(), Vector2(400, 0).rotated(angle) )
 		get_node("/root/World/Projectiles").add_child(BULLET)
 	
 func on_hit(damage: int):
@@ -54,3 +54,9 @@ func on_hit(damage: int):
 	Events.emit_signal("set_health", health)
 	if health <= 0:
 		Events.emit_signal("player_death")
+	for body in $"Knockback Area".get_overlapping_bodies():
+		print(body)
+		if body.name != "Player" and body.has_method("test"):
+			var pos = body.global_position - global_position
+			var angle = atan2(pos.y, pos.x)
+			body.test(Vector2(1600, 0).rotated(angle))

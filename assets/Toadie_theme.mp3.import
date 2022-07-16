@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Toadie_theme.mp3-16e0a2059878c2bd07fe0b906121db95.mp3str"
+
+[deps]
+
+source_file="res://assets/Toadie_theme.mp3"
+dest_files=[ "res://.import/Toadie_theme.mp3-16e0a2059878c2bd07fe0b906121db95.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
