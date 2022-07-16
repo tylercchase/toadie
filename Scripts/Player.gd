@@ -3,7 +3,7 @@ extends KinematicBody2D
 export (int) var speed = 400
 export (int) var health = 3
 var velocity = Vector2()
-onready var projectile = preload("res:///Scenes/Projectile")
+onready var projectile = preload("res:///Scenes/Projectile.tscn")
 func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed("right"):
