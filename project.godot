@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="roll_of_the_dice"
-run/main_scene="res://Scenes/main.tscn"
+run/main_scene="res://Scenes/UI/Main Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

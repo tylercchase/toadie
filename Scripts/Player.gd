@@ -46,6 +46,7 @@ func _process(delta):
 		BULLET.rotation_degrees = rotation_degrees
 		BULLET.apply_impulse(Vector2(), Vector2(400, 0).rotated(rotation))
 		get_node("/root/World/Projectiles").add_child(BULLET)
+		
 func on_hit(damage: int):
 	print(damage)
 	health -= damage

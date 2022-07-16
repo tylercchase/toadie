@@ -7,14 +7,14 @@ var player = null
 var velocity = Vector2.ZERO
 var health
 
+var knockback = Vector2.ZERO
+
 func _ready():
 	health = max_health
 
 func _physics_process(delta):
-	velocity = Vector2.ZERO
-	if player:
-		velocity = position.direction_to(player.position) * speed
-	velocity = move_and_slide(velocity)
+	velocity = position.direction_to(player.position) * speed
+	velocity = move_and_slide(velocity + knockback)
 
 func _on_Detection_Radius_body_entered(body):
 	if(body.name == "Player"):
@@ -22,7 +22,6 @@ func _on_Detection_Radius_body_entered(body):
 
 func on_hit(amount):
 	health -= amount
-	print('hit')
 	if health <= 0:
 		Events.emit_signal("enemy_death", max_health)
 		self.queue_free()
@@ -30,3 +29,6 @@ func on_hit(amount):
 func _on_HitArea_body_entered(body):
 	if(body.name == "Player"):
 		body.on_hit(damage)
+
+func impulse(pulse):
+	pass
