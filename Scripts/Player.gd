@@ -10,8 +10,15 @@ var next_xp = 100
 
 
 onready var projectile = preload("res:///Scenes/Projectiles/Projectile.tscn")
+
+var reserve_spell
+var on_cooldown = false
+
+
 func _ready():
 	Events.connect("enemy_death", self, "process_kill")
+	reserve_spell = projectile.instance()
+	get_node("/root/World/Projectiles").add_child(reserve_spell)
 
 func process_kill(h):
 	current_xp += h * 4 * xp_multiplier
@@ -38,21 +45,28 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 
 func _process(delta):
-	if Input.is_action_just_pressed("shoot"):
-		var BULLET = projectile.instance()
-		var pos = get_global_mouse_position() - global_position
-		var angle = atan2(pos.y, pos.x)
-		var position = Vector2(150 * cos(angle), 150 * sin(angle))
-		BULLET.global_position = global_position + position
-		BULLET.rotation_degrees = angle
-		BULLET.apply_impulse(Vector2(), Vector2(400, 0).rotated(angle) )
-		get_node("/root/World/Projectiles").add_child(BULLET)
-	
+	var pos = get_global_mouse_position() - global_position
+	var angle = atan2(pos.y, pos.x)
+	var position = Vector2(200 * cos(angle), 200 * sin(angle))
+	$Weapon.global_position = global_position + position
+	if is_instance_valid(reserve_spell):
+		reserve_spell.global_position = $Weapon.global_position
+		if Input.is_action_just_pressed("shoot") and !on_cooldown:
+			var BULLET = reserve_spell
+			BULLET.rotation_degrees = angle
+#			BULLET.global_position = $Weapon.global_position
+			BULLET.apply_impulse(Vector2(), Vector2(400, 0).rotated(angle))
+			BULLET.start_thing()
+			reserve_spell = null
+			on_cooldown = true
+			$Cooldown.start()
+
 func on_hit(damage: int):
 	print(damage)
 	health -= damage
 	Events.emit_signal("set_health", health)
 	if health <= 0:
+		$death_sound.play()
 		Events.emit_signal("player_death")
 	for body in $"Knockback Area".get_overlapping_bodies():
 		print(body)
@@ -60,3 +74,9 @@ func on_hit(damage: int):
 			var pos = body.global_position - global_position
 			var angle = atan2(pos.y, pos.x)
 			body.test(Vector2(1600, 0).rotated(angle))
+
+func _on_Cooldown_timeout():
+	on_cooldown = false
+	var aaa = projectile.instance()
+	get_node("/root/World/Projectiles").add_child(aaa)
+	reserve_spell = aaa

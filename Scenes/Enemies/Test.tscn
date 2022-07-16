@@ -15,7 +15,7 @@ extents = Vector2( 66, 65.5 )
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 3
 script = ExtResource( 2 )
-speed = 200.0
+speed = 100.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

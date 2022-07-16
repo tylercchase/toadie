@@ -8,6 +8,9 @@ func _on_Projectile_body_entered(body):
 		body.on_hit(1)
 	queue_free()
 
+func start_thing():
+	$Timer.start()
+	$CollisionShape2D.disabled = false
 
 func _on_Timer_timeout():
 	queue_free()
