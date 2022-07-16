@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/garfield.png" type="Texture" id=1]
+[ext_resource path="res://assets/Main_Toadie.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -13,14 +13,17 @@ radius = 286.063
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -4.76837e-07 )
+rotation = -0.0827195
+scale = Vector2( 0.145333, 0.145333 )
 texture = ExtResource( 1 )
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 148, 0 )
+[node name="Weapon" type="Position2D" parent="."]
+position = Vector2( 5, -170 )
 
 [node name="Knockback Area" type="Area2D" parent="."]
 
