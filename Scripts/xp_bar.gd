@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgress
 
 
 # Declare member variables here. Examples:

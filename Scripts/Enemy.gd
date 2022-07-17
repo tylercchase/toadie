@@ -27,6 +27,9 @@ func on_hit(amount):
 	if health <= 0:
 		Events.emit_signal("enemy_death", max_health)
 		$CollisionShape2D.disabled = true
+		set_collision_mask_bit(0, false)
+		set_collision_layer_bit(0, false)
+		set_collision_layer_bit(1, false)
 		$Sprite.visible = false
 		$HitArea.monitoring = false
 		$HitArea.monitorable = false
