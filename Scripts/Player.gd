@@ -9,8 +9,8 @@ var current_xp = 0
 var next_xp = 100
 
 
-onready var projectile = preload("res:///Scenes/Projectiles/d6.tscn")
-
+onready var projectile = preload("res:///Scenes/Projectiles/d4.tscn")
+onready var other_projectile = preload("res://Scenes/Projectiles/d6.tscn")
 var reserve_spell
 var on_cooldown = false
 
