@@ -1,15 +1,15 @@
 extends Node2D
 
 
-onready var enemies = [preload("res://Scenes/Enemies/frog_spear.tscn"), preload("res://Scenes/Enemies/frog_spear.tscn"), preload("res://Scenes/Enemies/Test.tscn")]
+onready var enemies = [preload("res://Scenes/Enemies/frog_spear.tscn"), preload("res://Scenes/Enemies/frog_shield.tscn")]
 
 func _ready():
 	pass # Replace with function body.
 
 
 func get_spawn_location():
-	var rand_x = rand_range(-1000,1000)
-	var rand_y = rand_range(-1000,1000)
+	var rand_x = rand_range(-1000, 1000)
+	var rand_y = rand_range(-1000, 1000)
 	var player_pos = get_node("../Player").global_position
 	var pos = Vector2(
 		player_pos.x + rand_x,
@@ -20,7 +20,7 @@ func get_spawn_location():
 		pos = get_spawn_location()
 	return pos
 func spawn_enemy():
-	var Enemy = enemies[0].instance()
+	var Enemy = enemies[randi() % enemies.size()].instance()
 	var location = get_spawn_location()
 	Enemy.global_position = location
 	Enemy.player = get_node("../Player")

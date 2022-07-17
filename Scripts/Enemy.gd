@@ -18,9 +18,9 @@ func _physics_process(delta):
 	if knockback:
 		knockback = Vector2.ZERO
 
-
 func on_hit(amount):
 	health -= amount
+	$TextManager.show_value(amount)
 	if health <= 0:
 		Events.emit_signal("enemy_death", max_health)
 		self.queue_free()
