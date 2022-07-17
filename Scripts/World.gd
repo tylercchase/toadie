@@ -20,11 +20,17 @@ func pause_toggle():
 	pause_everything(pause_state)
 
 func pause_everything(state):
+	print(state)
+	print('help')
 	for child in get_children():
 		if child.name != "Camera2D":
 			if "paused" in child:
 				print('test')
 				child.paused = state
+			elif child.name == "Enemies":
+				for child2 in child.get_children():
+					child2.set_physics_process(!state)
+					if "paused" in child2:
+						child2.paused = state
 			else:
 				child.set_physics_process(!state)
-	
