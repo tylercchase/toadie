@@ -9,7 +9,7 @@ var current_xp = 0
 var next_xp = 100
 
 
-onready var projectile = preload("res:///Scenes/Projectiles/Projectile.tscn")
+onready var projectile = preload("res:///Scenes/Projectiles/d4.tscn")
 
 var reserve_spell
 var on_cooldown = false
@@ -45,6 +45,8 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 
 func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		Events.emit_signal("toggle_pause")
 	var pos = get_global_mouse_position() - global_position
 	var angle = atan2(pos.y, pos.x)
 	var position = Vector2(200 * cos(angle), 200 * sin(angle))

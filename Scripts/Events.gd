@@ -8,3 +8,5 @@ signal enemy_death
 
 signal level_up
 signal set_xp
+
+signal toggle_pause

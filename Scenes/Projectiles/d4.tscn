@@ -3,24 +3,13 @@
 [ext_resource path="res://assets/fireball.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Projectile.gd" type="Script" id=2]
 [ext_resource path="res://assets/triangle_frames.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Projectiles/dice.tres" type="Material" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=3]
 particles_animation = true
 particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = false
-
-[sub_resource type="ParticlesMaterial" id=2]
-emission_shape = 1
-emission_sphere_radius = 50.0
-flag_disable_z = true
-gravity = Vector3( 0, 98, 0 )
-orbit_velocity = 1.0
-orbit_velocity_random = 0.2
-scale = 3.0
-scale_random = 1.0
-anim_offset = 1.0
-anim_offset_random = 1.0
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 48.0104
@@ -32,11 +21,12 @@ gravity_scale = 0.0
 contacts_reported = 2
 contact_monitor = true
 script = ExtResource( 2 )
+max_damage = 4
 
 [node name="Particles2D" type="Particles2D" parent="."]
 material = SubResource( 3 )
 scale = Vector2( 1.02325, 1.04412 )
-process_material = SubResource( 2 )
+process_material = ExtResource( 4 )
 texture = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -30,7 +30,6 @@ position = Vector2( 0, -4.76837e-07 )
 rotation = -0.0827195
 scale = Vector2( 0.229262, 0.229262 )
 frames = SubResource( 3 )
-frame = 2
 playing = true
 flip_h = true
 
@@ -41,6 +40,7 @@ shape = SubResource( 1 )
 position = Vector2( 5, -170 )
 
 [node name="Sprite" type="Sprite" parent="Weapon"]
+visible = false
 scale = Vector2( 0.0845734, 0.0845734 )
 texture = ExtResource( 6 )
 
