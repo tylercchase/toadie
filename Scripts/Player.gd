@@ -9,7 +9,7 @@ var current_xp = 0
 var next_xp = 100
 
 
-onready var projectile = preload("res:///Scenes/Projectiles/d4.tscn")
+onready var projectile = preload("res:///Scenes/Projectiles/d6.tscn")
 
 var reserve_spell
 var on_cooldown = false
@@ -31,8 +31,10 @@ func process_kill(h):
 func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed("right"):
+		$Sprite.flip_h = false
 		velocity.x += 1
 	if Input.is_action_pressed("left"):
+		$Sprite.flip_h = true
 		velocity.x -= 1
 	if Input.is_action_pressed("down"):
 		velocity.y += 1

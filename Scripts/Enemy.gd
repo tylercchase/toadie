@@ -18,9 +18,6 @@ func _physics_process(delta):
 	if knockback:
 		knockback = Vector2.ZERO
 
-func _on_Detection_Radius_body_entered(body):
-	if(body.name == "Player"):
-		player = body
 
 func on_hit(amount):
 	health -= amount

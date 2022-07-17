@@ -7,7 +7,7 @@ func _ready():
 
 func _on_Projectile_body_entered(body):
 	if body.has_method("on_hit"):
-		var damage = rand_range(1,max_damage)
+		var damage = int(rand_range(1,max_damage))
 		body.on_hit(damage)
 		print(damage)
 	queue_free()

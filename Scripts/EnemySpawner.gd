@@ -1,7 +1,7 @@
 extends Node2D
 
 
-onready var enemies = [preload("res://Scenes/Enemies/Test.tscn")]
+onready var enemies = [preload("res://Scenes/Enemies/frog_spear.tscn"), preload("res://Scenes/Enemies/frog_spear.tscn"), preload("res://Scenes/Enemies/Test.tscn")]
 
 func _ready():
 	pass # Replace with function body.

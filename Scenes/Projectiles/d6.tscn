@@ -2,12 +2,12 @@
 
 [ext_resource path="res://assets/fireball.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Projectile.gd" type="Script" id=2]
-[ext_resource path="res://assets/dice-d6.png" type="Texture" id=3]
+[ext_resource path="res://assets/dice/d6_rev2.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Projectiles/dice.tres" type="Material" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=3]
 particles_animation = true
-particles_anim_h_frames = 6
+particles_anim_h_frames = 2
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
