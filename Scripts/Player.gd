@@ -42,7 +42,7 @@ func get_input():
 
 func _physics_process(delta):
 	get_input()
-	velocity = move_and_slide(velocity)
+	move_and_slide(velocity)
 	var pos = get_global_mouse_position() - global_position
 	var angle = atan2(pos.y, pos.x)
 	var position = Vector2(200 * cos(angle), 200 * sin(angle))
@@ -61,9 +61,9 @@ func _process(delta):
 			var angle = atan2(pos.y, pos.x)
 			var BULLET = reserve_spell
 			reserve_spell = null
-			BULLET.rotation_degrees = angle
-			BULLET.apply_impulse(Vector2(), Vector2(400, 0).rotated(angle) + velocity)
-			BULLET.global_position = $Weapon.global_position
+			BULLET.rotation = angle
+#			BULLET.apply_impulse(Vector2(), Vector2(400, 0).rotated(angle) + velocity)
+#			BULLET.rect_position = $Weapon.position
 			BULLET.start_thing()
 			on_cooldown = true
 			$Cooldown.start()

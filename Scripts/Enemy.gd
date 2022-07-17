@@ -13,10 +13,11 @@ func _ready():
 	health = max_health
 
 func _physics_process(delta):
-	velocity = position.direction_to(player.position) * speed
-	velocity = move_and_slide(velocity + knockback)
-	if knockback:
-		knockback = Vector2.ZERO
+	if health > 0:
+		velocity = position.direction_to(player.position) * speed
+		velocity = move_and_slide(velocity + knockback)
+		if knockback:
+			knockback = Vector2.ZERO
 
 func on_hit(amount):
 	health -= amount
