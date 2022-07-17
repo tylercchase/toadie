@@ -30,7 +30,7 @@ position = Vector2( 0, -4.76837e-07 )
 rotation = -0.0827195
 scale = Vector2( 0.229262, 0.229262 )
 frames = SubResource( 3 )
-frame = 1
+frame = 3
 playing = true
 flip_h = true
 

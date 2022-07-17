@@ -80,7 +80,7 @@ func on_hit(damage: int):
 		if body.name != "Player" and body.has_method("test"):
 			var pos = body.global_position - global_position
 			var angle = atan2(pos.y, pos.x)
-			body.test(Vector2(1600, 0).rotated(angle))
+			body.test(Vector2(25000, 0).rotated(angle))
 
 func _on_Cooldown_timeout():
 	on_cooldown = false

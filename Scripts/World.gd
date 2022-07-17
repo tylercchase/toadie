@@ -16,7 +16,6 @@ func player_death():
 	pause_everything(true)
 
 func pause_toggle():
-	print('test')
 	pause_state = !pause_state
 	pause_everything(pause_state)
 

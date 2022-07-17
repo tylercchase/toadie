@@ -20,6 +20,8 @@ func _physics_process(delta):
 			knockback = Vector2.ZERO
 
 func on_hit(amount):
+	if health <= 0:
+		return
 	health -= amount
 	$TextManager.show_value(amount)
 	if health <= 0:
