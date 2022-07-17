@@ -23,6 +23,11 @@ func on_hit(amount):
 	$TextManager.show_value(amount)
 	if health <= 0:
 		Events.emit_signal("enemy_death", max_health)
+		$CollisionShape2D.disabled = true
+		$Sprite.visible = false
+		$HitArea.monitoring = false
+		$HitArea.monitorable = false
+		yield($TextManager, "done")
 		self.queue_free()
 
 func _on_HitArea_body_entered(body):

@@ -1,5 +1,6 @@
 extends Node2D
 
+signal done
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -15,6 +16,7 @@ func show_value(value, crit=false):
 	var aaa = FloatingText.instance()
 	add_child(aaa)
 	aaa.show_value(str(value), velocity, duration, spread, crit)
+	emit_signal("done")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

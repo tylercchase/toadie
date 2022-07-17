@@ -7,14 +7,16 @@ func _ready():
 	Events.connect("toggle_pause", self, "toggle_pause")
 
 func on_player_death():
-	$CenterContainer/Restart.visible = true
-	$CenterContainer/Quit.visible = true
-	
+	set_menu(true)
+
 func toggle_pause():
 	pause_state = !pause_state
-	$CenterContainer/Restart.visible = pause_state
-	$CenterContainer/Quit.visible = pause_state
-	
+	set_menu(pause_state)
+
+func set_menu(state):
+	$CenterContainer/MenuButtons/Quit.visible = state
+	$CenterContainer/MenuButtons/Restart.visible = state
+
 func _on_Restart_pressed():
 	get_tree().change_scene("res://Scenes/World.tscn")
 

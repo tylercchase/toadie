@@ -75,8 +75,8 @@ func on_hit(damage: int):
 	if health <= 0:
 		$death_sound.play()
 		Events.emit_signal("player_death")
+		self.set_physics_process(false)
 	for body in $"Knockback Area".get_overlapping_bodies():
-		print(body)
 		if body.name != "Player" and body.has_method("test"):
 			var pos = body.global_position - global_position
 			var angle = atan2(pos.y, pos.x)
