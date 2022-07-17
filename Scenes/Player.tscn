@@ -30,7 +30,7 @@ position = Vector2( 0, -4.76837e-07 )
 rotation = -0.0827195
 scale = Vector2( 0.229262, 0.229262 )
 frames = SubResource( 3 )
-frame = 2
+frame = 1
 playing = true
 flip_h = true
 
@@ -52,10 +52,12 @@ position = Vector2( -2, -1 )
 shape = SubResource( 2 )
 
 [node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.3
 one_shot = true
 autostart = true
 
 [node name="death_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+volume_db = -20.0
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
