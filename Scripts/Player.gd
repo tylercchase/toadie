@@ -22,8 +22,10 @@ func process_kill(h):
 	current_xp += h * 4 * xp_multiplier
 	while current_xp >= next_xp:
 		current_xp -= next_xp
-		next_xp *= 2
+#		next_xp *= 2
+		next_xp = 200000000000000000000000
 		Events.emit_signal("level_up")
+		projectile = other_projectile
 	Events.emit_signal("set_xp", float(current_xp) / next_xp * 100)
 
 func get_input():
