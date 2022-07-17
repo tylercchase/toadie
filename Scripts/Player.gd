@@ -62,8 +62,8 @@ func _process(delta):
 			var BULLET = reserve_spell
 			reserve_spell = null
 			BULLET.rotation_degrees = angle
-#			BULLET.global_position = $Weapon.global_position
 			BULLET.apply_impulse(Vector2(), Vector2(400, 0).rotated(angle) + velocity)
+			BULLET.global_position = $Weapon.global_position
 			BULLET.start_thing()
 			on_cooldown = true
 			$Cooldown.start()
