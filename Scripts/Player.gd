@@ -17,8 +17,6 @@ var on_cooldown = false
 
 func _ready():
 	Events.connect("enemy_death", self, "process_kill")
-	reserve_spell = projectile.instance()
-	get_node("/root/World/Projectiles").add_child(reserve_spell)
 
 func process_kill(h):
 	current_xp += h * 4 * xp_multiplier
@@ -45,23 +43,28 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
-
-func _process(delta):
-	if Input.is_action_just_pressed("pause"):
-		Events.emit_signal("toggle_pause")
 	var pos = get_global_mouse_position() - global_position
 	var angle = atan2(pos.y, pos.x)
 	var position = Vector2(200 * cos(angle), 200 * sin(angle))
 	$Weapon.global_position = global_position + position
 	if is_instance_valid(reserve_spell):
 		reserve_spell.global_position = $Weapon.global_position
+	
+
+func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		Events.emit_signal("toggle_pause")
+
+	if is_instance_valid(reserve_spell):
 		if Input.is_action_just_pressed("shoot") and !on_cooldown:
+			var pos = get_global_mouse_position() - global_position
+			var angle = atan2(pos.y, pos.x)
 			var BULLET = reserve_spell
+			reserve_spell = null
 			BULLET.rotation_degrees = angle
 #			BULLET.global_position = $Weapon.global_position
-			BULLET.apply_impulse(Vector2(), Vector2(400, 0).rotated(angle))
+			BULLET.apply_impulse(Vector2(), Vector2(400, 0).rotated(angle) + velocity)
 			BULLET.start_thing()
-			reserve_spell = null
 			on_cooldown = true
 			$Cooldown.start()
 
